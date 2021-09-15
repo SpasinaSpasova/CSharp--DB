@@ -1,2 +1,0 @@
-ALTER TABLE [Users]
-ADD CONSTRAINT CHK_PasswordLen CHECK (DATALENGTH([Password])>=5)
