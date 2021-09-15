@@ -1,0 +1,43 @@
+CREATE DATABASE [Movies]
+USE [Movies]
+
+CREATE TABLE [Directors]
+(
+[Id] INT PRIMARY KEY IDENTITY NOT NULL,
+[DirectorName] NVARCHAR(50) UNIQUE NOT NULL,
+CHECK (DATALENGTH([DirectorName])>=3),
+[Notes] NVARCHAR(MAX)
+)
+
+CREATE TABLE [Genres]
+(
+[Id] INT PRIMARY KEY IDENTITY NOT NULL,
+[GenreName] NVARCHAR(50) UNIQUE NOT NULL,
+CHECK (DATALENGTH([GenreName])>=3),
+[Notes] NVARCHAR(MAX)
+)
+
+CREATE TABLE [Categories]
+(
+[Id] INT PRIMARY KEY IDENTITY NOT NULL,
+[CategoryName] NVARCHAR(50) UNIQUE NOT NULL,
+CHECK (DATALENGTH([CategoryName])>=3),
+[Notes] NVARCHAR(MAX)
+)
+
+--•	Movies 
+--(Id, Title, DirectorId, CopyrightYear, 
+--Length, GenreId, CategoryId, Rating, Notes)
+
+CREATE TABLE [Movies]
+(
+[Id] INT PRIMARY KEY IDENTITY NOT NULL,
+[Title] NVARCHAR(50) UNIQUE NOT NULL,
+[DirectorId] INT FOREIGN KEY REFERENCES [Directors](Id),
+[CopyrightYear] DATETIME2,
+[Length] DECIMAL (18,2),
+[GenreId] INT FOREIGN KEY REFERENCES [Genres](Id),
+[CategoryId] INT FOREIGN KEY REFERENCES [Categories](Id),
+[Rating] BIGINT NOT NULL,
+[Notes] NVARCHAR(MAX)
+)
