@@ -1,0 +1,5 @@
+ALTER TABLE [Users]
+ADD UNIQUE ([Username]);
+
+ALTER TABLE [Users]
+ADD CONSTRAINT CHK_UsernameLen CHECK (DATALENGTH([Username])>=3)
